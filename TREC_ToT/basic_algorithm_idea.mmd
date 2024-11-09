@@ -1,0 +1,55 @@
+flowchart LR
+    subgraph Input
+        A[Query]
+    end
+
+    subgraph Layer1[Phase 1: Query Preprocessing]
+        B1[Category Identification]
+        B2[Keywords Extraction]
+        B3[Query Reformulation]
+        A --> B1
+        A --> B3
+        A --> B2
+        proxy1(( ))
+        B1 --> proxy1
+        B2 --> proxy1
+        B3 --> proxy1
+    end
+
+    subgraph Layer2[Phase 2: BM25 Matching & Domain Contraction]
+        C1[Category Matching]
+        C2[Keyword Matching]
+        C3[Reformulated Query Matching]
+        proxy1 --> C1
+        C1 --> C2
+        C2 --> C3
+    end
+
+
+    subgraph Layer3[Layer 3: Semantic Analysis]
+        D1[Context Extraction]
+        D2[Intent Recognition]
+        D3[Domain Mapping]
+        C1 & C2 & C3 --> D1
+        D1 --> D2
+        D2 --> D3
+    end
+
+    subgraph Layer4[Layer 4: Category Assignment]
+        E1[Primary Category]
+        E2[Subcategory]
+        E3[Confidence Score]
+        D3 --> E1
+        E1 --> E2
+        E2 --> E3
+    end
+
+    subgraph Output
+        F[Categorized Query]
+        E3 --> F
+    end
+
+    classDef layerStyle fill:#f9f,stroke:#333,stroke-width:2px
+    classDef processStyle fill:#bbf,stroke:#333,stroke-width:1px
+    class Layer1,Layer2,Layer3,Layer4 layerStyle
+    class A,B1,B2,B3,C1,C2,C3,D1,D2,D3,E1,E2,E3,F processStyle
