@@ -1,0 +1,59 @@
+%%| deviceScaleFactor: 16
+flowchart TD
+    start[Raw Query Input] --> layer1[Layer 1: Initial Restructuring]
+    
+    subgraph L1[Layer 1 Characteristics]
+        direction TB
+        l1_1["• Removes Conversational Elements"]
+        l1_2["• Neutralizes Tone"]
+        l1_3["• Fixes Basic Grammar"]
+        l1_4["• Establishes Wikipedia Format"]
+    end
+    
+    layer1 --> interim1[Neutralized Query]
+    L1 -.-> layer1
+    
+    interim1 --> layer2[Layer 2: Comparison & Refinement]
+    
+    subgraph L2[Layer 2 Characteristics]
+        direction TB
+        l2_1["• Cross-checks with Original"]
+        l2_2["• Restores Missing Information"]
+        l2_3["• Verifies Factual Accuracy"]
+        l2_4["• Maintains Clarity"]
+    end
+    
+    layer2 --> interim2[Refined Query]
+    L2 -.-> layer2
+    
+    interim2 --> layer3[Layer 3: Semantic Expansion]
+    
+    subgraph L3[Layer 3 Characteristics]
+        direction TB
+        l3_1["• Adds Context"]
+        l3_2["• Introduces Definitions"]
+        l3_3["• Enhances Comprehensiveness"]
+        l3_4["• Clarifies Intent/Scope"]
+    end
+    
+    layer3 --> interim3[Expanded Query]
+    L3 -.-> layer3
+    
+    interim3 --> layer4[Layer 4: Final Cleanup]
+    
+    subgraph L4[Layer 4 Characteristics]
+        direction TB
+        l4_1["• Removes Special Characters"]
+        l4_2["• Standardizes Format"]
+        l4_3["• Ensures Single Paragraph"]
+        l4_4["• Polishes Sentence Structure"]
+    end
+    
+    layer4 --> final[Wikipedia-Style Query Output]
+    L4 -.-> layer4
+    
+    style start fill:#f9f,stroke:#333,stroke-width:2px
+    style final fill:#9f9,stroke:#333,stroke-width:2px
+    style interim1 fill:#ffd,stroke:#333,stroke-width:1px
+    style interim2 fill:#ffd,stroke:#333,stroke-width:1px
+    style interim3 fill:#ffd,stroke:#333,stroke-width:1px
