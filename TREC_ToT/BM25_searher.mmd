@@ -1,0 +1,34 @@
+flowchart TB
+    subgraph Input
+        Q[Query Input]
+        Q --> |Parse| Q1[Categories]
+        Q --> |Parse| Q2[Keywords]
+        Q --> |Parse| Q3[Query Text]
+    end
+
+    subgraph "Layer 1: Category Filtering"
+        L1[BM25 Search on Categories]
+        DS1[Document Space: 300K]
+        Q1 --> L1
+        L1 --> DS1
+    end
+
+    subgraph "Layer 2: Keyword Refinement"
+        L2[BM25 Search on Keywords]
+        DS2[Document Space: 50K]
+        Q2 --> L2
+        DS1 --> L2
+        L2 --> DS2
+    end
+
+    subgraph "Layer 3: Query Resolution"
+        L3[BM25 Search on Query Text]
+        DS3[Final Results: 10K]
+        Q3 --> L3
+        DS2 --> L3
+        L3 --> DS3
+    end
+
+    style DS1 fill:#e1f5fe
+    style DS2 fill:#b3e5fc
+    style DS3 fill:#81d4fa
