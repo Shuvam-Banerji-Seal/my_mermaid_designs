@@ -6,29 +6,33 @@ flowchart TB
         Q --> |Parse| Q3[Query Text]
     end
 
-    subgraph "Layer 1: Category Filtering"
+    subgraph Layer1 ["Layer 1: Category Filtering"]
         L1[BM25 Search on Categories]
         DS1[Document Space: 300K]
-        Q1 --> L1
         L1 --> DS1
     end
+    Q1 --> Layer1
 
-    subgraph "Layer 2: Keyword Refinement"
+    subgraph Layer2 ["Layer 2: Keyword Refinement"]
         L2[BM25 Search on Keywords]
         DS2[Document Space: 50K]
-        Q2 --> L2
-        DS1 --> L2
         L2 --> DS2
     end
+    Q2 --> Layer2
+    DS1 --> Layer2
 
-    subgraph "Layer 3: Query Resolution"
+    subgraph Layer3 ["Layer 3: Query Resolution"]
         L3[BM25 Search on Query Text]
         DS3[Final Results: 10K]
-        Q3 --> L3
-        DS2 --> L3
         L3 --> DS3
     end
+    Q3 --> Layer3
+    DS2 --> Layer3
 
-    style DS1 fill:#e1f5fe
-    style DS2 fill:#b3e5fc
-    style DS3 fill:#81d4fa
+    style Input fill:#f0f4c3,stroke:#9e9d24,stroke-width:2px
+    style Layer1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,padding:15px
+    style Layer2 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px,padding:15px
+    style Layer3 fill:#e0f7fa,stroke:#0097a7,stroke-width:2px,padding:15px
+    style DS1 fill:#e1f5fe,stroke:#0288d1
+    style DS2 fill:#b3e5fc,stroke:#0288d1
+    style DS3 fill:#81d4fa,stroke:#0288d1
